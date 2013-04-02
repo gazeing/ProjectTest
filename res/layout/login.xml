@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+	android:id="@+id/widget32"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+<TextView
+    android:id="@+id/widget51"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@+id/widget50"
+    android:layout_alignParentLeft="true"
+    android:layout_alignTop="@+id/widget50"
+    android:layout_toLeftOf="@+id/widget50"
+    android:text="Password" />
+
+<TextView
+    android:id="@+id/widget48"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/widget34"
+    android:layout_toLeftOf="@+id/widget49"
+    android:text="Account" />
+
+<ImageView
+    android:id="@+id/widget34"
+    android:layout_width="319dp"
+    android:layout_height="302dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:src="@drawable/q_logo" />
+
+<EditText
+    android:id="@+id/widget49"
+    android:layout_width="187dp"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@+id/widget48"
+    android:layout_centerHorizontal="true"
+    android:ems="10"
+    android:hint="example"
+    android:text="example"
+    android:textSize="18sp" >
+
+    <requestFocus />
+</EditText>
+
+<EditText
+    android:id="@+id/widget50"
+    android:layout_width="183dp"
+    android:layout_height="wrap_content"
+    android:layout_alignRight="@+id/widget49"
+    android:layout_below="@+id/widget49"
+    android:layout_marginTop="20dp"
+    android:ems="10"
+    android:hint="123456"
+    android:password="true"
+    android:text="123456"
+    android:textSize="18sp" />
+
+<Button
+    android:id="@+id/btn_register"
+    android:layout_width="90dp"
+    android:layout_height="30dp"
+    android:layout_below="@+id/widget50"
+    android:layout_marginTop="26dp"
+    android:layout_toRightOf="@+id/widget48"
+    android:text="Register"
+    android:textSize="12sp" />
+
+<Button
+    android:id="@+id/btn_login"
+    android:layout_width="62dp"
+    android:layout_height="55dp"
+    android:layout_above="@+id/widget53"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/widget48"
+    android:layout_toRightOf="@+id/widget49"
+    android:text="Login" />
+
+<Button
+    android:id="@+id/btn_forgetpw"
+    android:layout_width="88dp"
+    android:layout_height="30dp"
+    android:layout_alignBaseline="@+id/btn_register"
+    android:layout_alignBottom="@+id/btn_register"
+    android:layout_toLeftOf="@+id/btn_login"
+    android:text="Forget?"
+    android:textSize="12sp" />
+
+</RelativeLayout>
