@@ -15,14 +15,24 @@ public class HttpAsyncTask extends AsyncTask<String, Void, String> {
 	protected String doInBackground(String... arg0) {
 		init();
 		
-		return PostData(arg0[0]);
+		return PostData(arg0);
 		
 		
 	}
-	private String PostData(String string) {
+	private String PostData(String... arg0)  {
 		// TODO Auto-generated method stub
+		String tmp = "";
 		
-		return ho.HttpClientPostMethod();
+		try {
+			if (arg0.length==2)
+				tmp = ho.doPost(arg0[0],arg0[1]);
+			else
+				tmp= ho.HttpClientPostMethod();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tmp;
 		//return ho.HttpClientGetMethod();
 	}
 	private void init() {

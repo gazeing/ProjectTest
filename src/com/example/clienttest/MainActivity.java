@@ -1,8 +1,14 @@
 package com.example.clienttest;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.example.clienttest.encryption.StringTransfer;
 import com.example.clienttest.http.HttpAsyncTask;
 import com.example.clienttest.http.HttpOperation;
+import com.example.clienttest.http.SendDataToServer;
 import com.example.clienttest.location.CollectLocation;
+import com.example.clienttest.phone_info.CollectPhoneInformation;
 
 
 import android.location.Location;
@@ -92,15 +98,17 @@ public class MainActivity extends Activity {
 //					// TODO Auto-generated catch block
 //					e.printStackTrace();
 //				}
-				CollectLocation cl = new CollectLocation(v.getContext(),locationListener);
-				//cl.sentGPSLocationRequest();
-
-				String lo = cl.getLocationInfoString(cl.getLocation());
-				tv.setText(lo);
+//				CollectLocation cl = new CollectLocation(v.getContext(),locationListener);
+//				//cl.sentGPSLocationRequest();
+//
+//				String lo = cl.getLocationInfoString(cl.getLocation());
+//				tv.setText(lo);
 //				int nRet = 0;
 				
 //				startActivityForResult(new Intent("com.example.clienttest.scan.CaptureActivity"),nRet);
-		         
+		      
+				
+				
 			}});
 		btHttp = (Button) findViewById(R.id.button2);
 		btHttp.setText("Http");
@@ -110,21 +118,30 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				HttpOperation ho = new HttpOperation("http://49.156.19.75");
-				ho.AddValueToParams("q", "hello");
-				HttpAsyncTask hat = new HttpAsyncTask(ho);
-//				try {
-					//String res = ho.HttpClientPostMethod("q", "helloworld");
-				String res ="";
-				try {
-					res = hat.execute("").get();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
-					if (res==""||res==null)
-						res = "No result!";
-					Log.i("HTTPresponce",res);
+//					SendDataToServer sd = new SendDataToServer("http://49.156.19.75");
+//					Map<String,String> map = new HashMap<String,String>();
+//					map.put("q", "u");
+//					String res = sd.doPost(map);
+//					String res = new CollectPhoneInformation(getApplication()).getPhoneNum();
+					String mac = new CollectPhoneInformation(getApplication()).getMacAddress();
+					
+					String plaintext = "This is a test for encryption.";
+					String cipher = "";
+					try {
+						cipher = StringTransfer.encrypt(mac, plaintext);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					String res ="";
+					try {
+						res = StringTransfer.decrypt(mac, cipher);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 					tv.setText(res);
 //					
 //				} catch (IOException e) {

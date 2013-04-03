@@ -14,13 +14,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-
-import com.example.clienttest.R;
-
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.EditText;
 
 
 

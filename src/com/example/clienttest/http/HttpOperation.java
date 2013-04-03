@@ -18,8 +18,10 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 import android.util.Log;
@@ -189,5 +191,31 @@ public class HttpOperation {
 
 
         }
+    
+    
+    public String doPost( String data, String contentType)   
+    throws Exception {  
+    HttpPost post = new HttpPost(urlStr);  
+    try  {  
+        // add params to request  
+        StringEntity se = new StringEntity(data, HTTP.UTF_8);  
+        se.setContentType(contentType);  
+        post.setEntity(se);  
+        // send request  
+        Log.v("http", "doPost:" + urlStr);  
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpResponse resp = httpclient.execute(post);  
+        String strResp = "";  
+        if (resp.getStatusLine().getStatusCode() == HttpURLConnection.HTTP_OK)  
+            strResp = EntityUtils.toString(resp.getEntity());  
+        else  
+            // if status code is not OK, throw exception
+            throw new Exception("Error Response:" + resp.getStatusLine().toString());  
+        return strResp;  
+    }  
+    finally {  
+        post.abort();  
+    }  
+}  
 
 }
