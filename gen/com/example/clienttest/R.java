@@ -52,17 +52,17 @@ public final class R {
     }
     public static final class id {
         public static final int ScrollView01=0x7f07000c;
-        public static final int TextView01=0x7f070018;
-        public static final int accountEdit=0x7f070019;
+        public static final int TextView01=0x7f070013;
+        public static final int accountEdit=0x7f07001a;
         public static final int action_settings=0x7f07002a;
         /**  Messages IDs 
          */
         public static final int auto_focus=0x7f070000;
-        public static final int btn_forgetpw=0x7f070014;
+        public static final int btn_later=0x7f070017;
         public static final int btn_login=0x7f070016;
-        public static final int btn_register=0x7f070015;
         public static final int button1=0x7f07000f;
         public static final int button2=0x7f070010;
+        public static final int checkBox1=0x7f07001c;
         public static final int decode=0x7f070001;
         public static final int decode_failed=0x7f070002;
         public static final int decode_succeeded=0x7f070003;
@@ -71,8 +71,8 @@ public final class R {
         public static final int encode_succeeded=0x7f070005;
         public static final int imageView1=0x7f070011;
         public static final int launch_product_query=0x7f070006;
-        public static final int nameEdit=0x7f070017;
-        public static final int passwordEdit=0x7f07001c;
+        public static final int nameEdit=0x7f070018;
+        public static final int passwordEdit=0x7f07001b;
         public static final int preview_view=0x7f07001d;
         public static final int quit=0x7f070007;
         public static final int restart_preview=0x7f070008;
@@ -83,12 +83,12 @@ public final class R {
         public static final int txtResult=0x7f07001f;
         public static final int viewfinder_view=0x7f07001e;
         public static final int widget32=0x7f070012;
-        public static final int widget34=0x7f070013;
+        public static final int widget34=0x7f070019;
         public static final int widget36=0x7f070027;
         public static final int widget44=0x7f070028;
         public static final int widget45=0x7f070029;
-        public static final int widget48=0x7f07001b;
-        public static final int widget51=0x7f07001a;
+        public static final int widget48=0x7f070014;
+        public static final int widget51=0x7f070015;
         public static final int widget56=0x7f070025;
         public static final int widget57=0x7f070021;
         public static final int widget58=0x7f070024;

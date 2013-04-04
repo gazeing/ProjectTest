@@ -1,6 +1,7 @@
 package com.example.clienttest.location;
 
 import java.util.List;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Address;
 import android.location.Criteria;
@@ -47,12 +48,14 @@ public CollectLocation(Context context,LocationListener locationListener) {
 	{  
 	    return (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);  
 	}  
+	@SuppressLint("NewApi")
 	public String getLocationInfoString(Location loc) {
 		Geocoder gc = new Geocoder(context);
 		//Location cur= getLocation(context);
 		Location cur= loc;
 		List<Address> adds = null;
-		
+//		if (!Geocoder.isPresent())
+//			return "Geocoder Service is not available.";
 			
 		try {
 			if (cur!=null)

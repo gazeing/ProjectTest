@@ -98,11 +98,13 @@ public class MainActivity extends Activity {
 //					// TODO Auto-generated catch block
 //					e.printStackTrace();
 //				}
-//				CollectLocation cl = new CollectLocation(v.getContext(),locationListener);
-//				//cl.sentGPSLocationRequest();
-//
-//				String lo = cl.getLocationInfoString(cl.getLocation());
-//				tv.setText(lo);
+				CollectLocation cl = new CollectLocation(v.getContext(),locationListener);
+				//cl.sentGPSLocationRequest();
+
+				String lo = cl.getLocationInfoString(cl.getLocation());
+				if ((lo==null)||(lo.length()==0))
+					lo =  "Geocoder Service is not available.";
+				tv.setText(lo);
 //				int nRet = 0;
 				
 //				startActivityForResult(new Intent("com.example.clienttest.scan.CaptureActivity"),nRet);
