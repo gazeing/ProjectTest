@@ -69,7 +69,16 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            
+            </activity>
+             <activity
+            android:name="com.example.clienttest.MainViewActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.example.clienttest.MainViewActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
         </activity>
         <uses-library android:name="com.google.android.maps" /> 
     </application>
