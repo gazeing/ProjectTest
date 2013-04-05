@@ -17,13 +17,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -34,11 +32,13 @@ import android.widget.PopupMenu;
 
 public class HistoryActivity extends Activity {
 
-//	private List<String> data = new ArrayList<String>();
-//	protected List<String> getData() {
-//		return data;
-//	}
-	ArrayList<HashMap<String, String>> hashlist = new ArrayList<HashMap<String, String>>();  
+
+	ArrayList<HashMap<String, String>> hashlist = new ArrayList<HashMap<String, String>>(); 
+	//for test
+	ArrayList<HashMap<String, String>> hashlist1 = new ArrayList<HashMap<String, String>>(); 
+	ArrayList<HashMap<String, String>> hashlist2 = new ArrayList<HashMap<String, String>>();
+	ArrayList<HashMap<String, String>> hashlist3 = new ArrayList<HashMap<String, String>>(); 
+	ArrayList<HashMap<String, String>> hashlist4 = new ArrayList<HashMap<String, String>>(); 
 	protected String getDataElement(int index){
 		return hashlist.get(index).get("ItemTitle");
 	}
@@ -54,38 +54,53 @@ public class HistoryActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		qdo = new QrcodeDataOperator(this);
 		
 		
-		//for test
-		
-		for (int i =0;i<20;i++){
-			Qrcode q = new Qrcode("Test data");
-			qdo.insert(q);	
-		}
+
 		
 		
-		
-//		lView = new ListView(this);
-//		this.addContentView(lView,null);
+
 		setContentView(R.layout.history);
 		lView = (ListView) findViewById(R.id.history_list);
 		
 		TextView tv = (TextView) findViewById(R.id.tvtitle);
 		tv.setText("History");
-//		AdView av = new AdView(this);
-//		lView.addFooterView(av);
-//		
-//		FrameLayout footView = (FrameLayout) LayoutInflater.from(this) .inflate(R.layout.ad_bar, null);
-//		lView.addFooterView(footView); 
+
 		
-		SimpleAdapter simpAdp = new SimpleAdapter(this,
-													hashlist,R.layout.listitem,
+		SimpleAdapter simpAdp1 = new SimpleAdapter(this,
+													hashlist1,R.layout.listitem,
 	                                                new String[] {"ItemTitle", "ItemText"},   
 	                                                new int[] {R.id.ItemTitle,R.id.ItemText});
-		lView.setAdapter(simpAdp);
+		SimpleAdapter simpAdp2 = new SimpleAdapter(this,
+													hashlist2,R.layout.listitem,
+									                new String[] {"ItemTitle", "ItemText"},   
+									                new int[] {R.id.ItemTitle,R.id.ItemText});
+		SimpleAdapter simpAdp3 = new SimpleAdapter(this,
+													hashlist3,R.layout.listitem,
+									                new String[] {"ItemTitle", "ItemText"},   
+									                new int[] {R.id.ItemTitle,R.id.ItemText});
+		SimpleAdapter simpAdp4 = new SimpleAdapter(this,
+													hashlist4,R.layout.listitem,
+									                new String[] {"ItemTitle", "ItemText"},   
+									                new int[] {R.id.ItemTitle,R.id.ItemText});
+		
+		
+
+		
+		
+		
+		
+		SeparatedListAdapter adapter = new SeparatedListAdapter(this);  
+        adapter.addSection("Today", simpAdp1); 
+        adapter.addSection("Past week", simpAdp2); 
+        adapter.addSection("Past month", simpAdp3);
+        adapter.addSection("Month ago", simpAdp4);
+		
+		lView.setAdapter(adapter);
 		lView.setBackgroundResource(R.drawable.background);
+
 
 		
 		lView.setOnItemClickListener(new OnItemClickListener() {  
@@ -168,16 +183,16 @@ public class HistoryActivity extends Activity {
 
 	public void showScanDetails(){
     	String text = "";
-    	//SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
+    	
    
-//    	QrcodeDataOperator qdo = getQdo();
-//    	Qrcode qc = qdo.query(qrDataGlobal);
-//    	if (qc!=null)
-//    		text = "Rawdata: \n"+qc.getRawdata()+"\nHashcode: \n"+qc.getHashcode()+"\nTime: \n"+TransferTimeFormat(qc.getTimeStamp());
-//    	Dialog dialog = new AlertDialog.Builder(this).setIcon(R.drawable.ic_launcher)
-//    				.setView(new ScanDetail(this,text))
-//    				.setTitle("Scan Details").show();
-//    	dialog.show();
+    	QrcodeDataOperator qdo = getQdo();
+    	Qrcode qc = qdo.query(qrDataGlobal);
+    	if (qc!=null)
+    		text = "Rawdata: \n"+qc.getRawdata()+"\nHashcode: \n"+qc.getHashcode()+"\nTime: \n"+TransferTimeFormat(qc.getTimeStamp());
+    	Dialog dialog = new AlertDialog.Builder(this).setIcon(R.drawable.ic_launcher)
+    				.setView(new ScanDetail(this,text))
+    				.setTitle("Scan Details").show();
+    	dialog.show();
     }
     @SuppressLint("SimpleDateFormat")
 	public String TransferTimeFormat(long time){
@@ -187,21 +202,57 @@ public class HistoryActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
+		
 		super.onResume();
 
-		hashlist.clear();
-
+		classfyListByDate();
+		lView.invalidateViews();
+	}
+	@SuppressWarnings("deprecation")
+	@SuppressLint("SimpleDateFormat")
+	protected long getTodayMidnight(){
+;
+		Date today = new Date();
+		int year = today.getYear();
+		int month = today.getMonth();
+		int day = today.getDate();
+		
+		Date mid = new Date(year,month,day);
+		long longNow = mid.getTime();
+		return longNow;
+	}
+	
+	protected void classfyListByDate(){
+		
 		QrcodeDataOperator qdo = getQdo();
+
+		long longMid = getTodayMidnight();
+		//Log.i("the middlenight is :",TransferTimeFormat(longMid));
+		final long oneDay = 1000*60*60*24;
+		hashlist1.clear();
+		hashlist2.clear();
+		hashlist3.clear();
+		hashlist4.clear();
+
+		
 		List<Qrcode> qrs = qdo.queryAll();
 		for (Qrcode q : qrs){
 
 	        HashMap<String, String> map = new HashMap<String, String>();  
 	        map.put("ItemTitle", q.getRawdata());  
 	        map.put("ItemText", TransferTimeFormat(q.getTimeStamp())); 
-	        hashlist.add(map);
+	        long longTime = q.getTimeStamp();
+	        if (((longTime-longMid)<oneDay)&&((longTime-longMid)>=0))
+	        	hashlist1.add(map);
+	        else if (((longMid-longTime)<(oneDay)*6)&&((longMid-longTime)>=0))
+	        	hashlist2.add(map);
+	        else if (((longMid-longTime)<(oneDay)*30)&&((longMid-longTime)>=(oneDay)*6))
+	        	hashlist3.add(map);
+	        else	if ((longMid-longTime)>=(oneDay)*30)
+	        	hashlist4.add(map);
+	        else
+	        	hashlist1.add(map);
 		}
-		lView.invalidateViews();
 	}
 
 //	public void addList(String contents){
