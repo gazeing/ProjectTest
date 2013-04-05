@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Gravity;
@@ -102,11 +103,15 @@ public class MainViewActivity extends Activity{
                 		"you chose"+(position+1)+"#picture", Toast.LENGTH_SHORT);  
                 toast.setGravity(Gravity.BOTTOM, 0, 0);  
                 toast.show();  
+                
+                if (position == 1){
+                	 startActivity(new Intent("com.example.clienttest.HistoryActivity"));
+                }
             }  
               
         });  
         
-        bt_ad = (Button) findViewById(R.id.btn_ad);
+        bt_ad = (Button) findViewById(R.id.btn_ad_bar);
         bt_ad.setOnClickListener(new OnClickListener() {
 			
 			@Override

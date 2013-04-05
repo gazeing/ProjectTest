@@ -8,9 +8,9 @@
         <Button  
             android:id="@+id/btn_ad_bar"  
             android:layout_width="fill_parent"  
-            android:layout_height="145dip"  
-            android:layout_gravity="center_vertical"  
-            android:background="@drawable/background_orange"  
+            android:layout_height="wrap_content"  
+
+            android:background="@drawable/title"  
              />  
       
 

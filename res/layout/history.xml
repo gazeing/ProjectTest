@@ -3,17 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+    
     <include
         android:id="@+id/title_bar"
         layout="@layout/title_bar" />
 
-    <GridView
-        android:id="@+id/gridview"
+    <ListView
+        android:id="@+id/history_list"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="1.04"
-        android:numColumns="2" />
+         />
 
     <include
         android:id="@+id/ad_bar"
