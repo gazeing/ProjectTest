@@ -3,6 +3,9 @@ package com.example.clienttest;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.example.clienttest.encryption.StringTransfer;
 import com.example.clienttest.http.HttpAsyncTask;
 import com.example.clienttest.http.HttpOperation;
@@ -120,42 +123,61 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-//					SendDataToServer sd = new SendDataToServer("http://49.156.19.75");
-//					Map<String,String> map = new HashMap<String,String>();
-//					map.put("q", "u");
-//					String res = sd.doPost(map);
-//					String res = new CollectPhoneInformation(getApplication()).getPhoneNum();
-					String mac = new CollectPhoneInformation(getApplication()).getMacAddress();
-					
-					String plaintext = "This is a test for encryption.";
-					String cipher = "";
-					try {
-						cipher = StringTransfer.encrypt(mac, plaintext);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					String res ="";
-					try {
-						res = StringTransfer.decrypt(mac, cipher);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
+
+					String res ="no result";
+					res = testServer();
 					tv.setText(res);
-//					
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-				
-				
+	
 			}
 		});
 	}
+	public String testEncryption(){
+		String mac = new CollectPhoneInformation(getApplication()).getMacAddress();
+		
+		String plaintext = "This is a test for encryption.";
+		String cipher = "";
+		try {
+			cipher = StringTransfer.encrypt(mac, plaintext);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String res ="";
+		try {
+			res = StringTransfer.decrypt(mac, cipher);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 	
+	public String testServer(){
+		String name = "test";
+		String account = "test@test.com";
+		String password = "testpassword";
+		
+		String res ="";
+		
+		JSONObject json = new JSONObject();  
+        try {
+			json.put("Name", name);
+			json.put("Account", account);  
+	        json.put("Password", password); 
+			SendDataToServer sd = new SendDataToServer("http://192.168.15.141/RestTest.svc/json/100");
+			Log.i("LoginPostData",json.toString());
+			res = sd.doPost(json.toString(), "application/json");
+			Log.i("LoginPostResult",res);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+
+		
+		return res;
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
