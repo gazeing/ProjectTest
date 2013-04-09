@@ -56,9 +56,10 @@ public final class R {
         public static final int history_icon=0x7f020006;
         public static final int ic_launcher=0x7f020007;
         public static final int q_logo=0x7f020008;
-        public static final int scan_icon=0x7f020009;
-        public static final int share_icon=0x7f02000a;
-        public static final int title=0x7f02000b;
+        public static final int scan_box_for_silvio=0x7f020009;
+        public static final int scan_icon=0x7f02000a;
+        public static final int share_icon=0x7f02000b;
+        public static final int title=0x7f02000c;
     }
     public static final class id {
         public static final int Combo01=0x7f070016;
@@ -68,35 +69,39 @@ public final class R {
         public static final int MyImageInItem=0x7f07001f;
         public static final int MyListItem=0x7f07001e;
         public static final int MyListItemIn=0x7f070020;
+        public static final int ScanDetailText1=0x7f070038;
+        public static final int ScanDetailText2=0x7f070039;
+        public static final int ScanDetailText3=0x7f07003a;
         public static final int ScrollView01=0x7f07000c;
         public static final int TextView01=0x7f070014;
         public static final int TextView02=0x7f070015;
         public static final int accountEdit=0x7f070029;
-        public static final int action_settings=0x7f070043;
+        public static final int action_settings=0x7f070047;
         public static final int ad_bar=0x7f070019;
-        public static final int add_to_favor=0x7f07003f;
+        public static final int add_to_favor=0x7f070043;
         /**  Messages IDs 
          */
         public static final int auto_focus=0x7f070000;
         public static final int btn_ad_bar=0x7f070012;
         public static final int btn_later=0x7f070026;
         public static final int btn_login=0x7f070025;
-        public static final int btn_title_left=0x7f07003b;
-        public static final int btn_title_right=0x7f07003c;
+        public static final int btn_title_left=0x7f07003f;
+        public static final int btn_title_right=0x7f070040;
         public static final int button1=0x7f07000f;
         public static final int button2=0x7f070010;
+        public static final int buttonScan=0x7f07002f;
         public static final int checkBox1=0x7f07002a;
         public static final int decode=0x7f070001;
         public static final int decode_failed=0x7f070002;
         public static final int decode_succeeded=0x7f070003;
-        public static final int delete_item=0x7f070042;
+        public static final int delete_item=0x7f070046;
         public static final int editText1=0x7f07000e;
         public static final int encode_failed=0x7f070004;
         public static final int encode_succeeded=0x7f070005;
         public static final int favorite_list=0x7f070018;
-        public static final int feedback=0x7f07003e;
-        public static final int go_to_web=0x7f07003d;
-        public static final int gridview=0x7f07002f;
+        public static final int feedback=0x7f070042;
+        public static final int go_to_web=0x7f070041;
+        public static final int gridview=0x7f070030;
         public static final int history_list=0x7f07001c;
         public static final int imageView1=0x7f070011;
         public static final int instructions_view=0x7f070013;
@@ -108,29 +113,29 @@ public final class R {
         public static final int quit=0x7f070007;
         public static final int restart_preview=0x7f070008;
         public static final int return_scan_result=0x7f070009;
-        public static final int scan_detail=0x7f070041;
+        public static final int scan_detail=0x7f070045;
         public static final int search_book_contents_failed=0x7f07000a;
         public static final int search_book_contents_succeeded=0x7f07000b;
-        public static final int send_out=0x7f070040;
+        public static final int send_out=0x7f070044;
         public static final int textView1=0x7f07000d;
         public static final int title_bar=0x7f070017;
-        public static final int tvtitle=0x7f07003a;
+        public static final int tvtitle=0x7f07003e;
         public static final int txtResult=0x7f07002e;
         public static final int viewfinder_view=0x7f07002d;
         public static final int widget32=0x7f070022;
         public static final int widget34=0x7f070028;
-        public static final int widget36=0x7f070037;
-        public static final int widget44=0x7f070038;
-        public static final int widget45=0x7f070039;
+        public static final int widget36=0x7f07003b;
+        public static final int widget44=0x7f07003c;
+        public static final int widget45=0x7f07003d;
         public static final int widget48=0x7f070023;
         public static final int widget51=0x7f070024;
-        public static final int widget56=0x7f070035;
-        public static final int widget57=0x7f070031;
-        public static final int widget58=0x7f070034;
-        public static final int widget59=0x7f070030;
-        public static final int widget60=0x7f070032;
-        public static final int widget61=0x7f070036;
-        public static final int widget62=0x7f070033;
+        public static final int widget56=0x7f070036;
+        public static final int widget57=0x7f070032;
+        public static final int widget58=0x7f070035;
+        public static final int widget59=0x7f070031;
+        public static final int widget60=0x7f070033;
+        public static final int widget61=0x7f070037;
+        public static final int widget62=0x7f070034;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -145,8 +150,9 @@ public final class R {
         public static final int main=0x7f030009;
         public static final int mainview=0x7f03000a;
         public static final int register=0x7f03000b;
-        public static final int splash=0x7f03000c;
-        public static final int title_bar=0x7f03000d;
+        public static final int scan_detail=0x7f03000c;
+        public static final int splash=0x7f03000d;
+        public static final int title_bar=0x7f03000e;
     }
     public static final class menu {
         public static final int action_chose=0x7f0a0000;

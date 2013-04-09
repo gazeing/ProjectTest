@@ -32,7 +32,7 @@ public class SplashScreen extends Activity {
                 } finally {
                     finish();
                     // start mainActivity
-                    startActivity(new Intent("com.example.clienttest.MainViewActivity"));
+                    startActivity(new Intent("com.example.clienttest.MainActivity"));
                    // stop(); //android does not support stop() any more, following code could be a way to exit
 //                    shouldContinue = false;
 //                    join();

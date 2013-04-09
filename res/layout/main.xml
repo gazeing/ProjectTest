@@ -29,7 +29,7 @@
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
       
-      android:background="@color/transparent"/>
+      android:background="@drawable/scan_box_for_silvio"/>
 
 
 
@@ -37,5 +37,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"          
             android:textSize="14sp"/>
+  
+      <Button
+        android:id="@+id/buttonScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="280sp"
+        android:layout_marginBottom="5sp"
+
+        android:text="Scan" />"
 
 </FrameLayout>
