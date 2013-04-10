@@ -39,13 +39,14 @@
             android:textSize="14sp"/>
   
       <Button
-        android:id="@+id/buttonScan"
+        android:id="@+id/buttonScanQuit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="280sp"
-        android:layout_marginBottom="5sp"
+        android:layout_gravity="top"
+        android:layout_marginLeft="580sp"
+        android:layout_marginTop="15sp"
+        android:rotation="270"
 
-        android:text="Scan" />"
+        android:text="Back" />"
 
 </FrameLayout>

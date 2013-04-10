@@ -21,8 +21,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.view.SurfaceHolder;
+import android.view.View;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class CaptureActivity extends Activity implements Callback {
@@ -38,6 +41,8 @@ public class CaptureActivity extends Activity implements Callback {
 	private boolean playBeep;
 	private static final float BEEP_VOLUME = 0.10f;
 	private boolean vibrate;
+	
+	Button bt_back;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -51,6 +56,16 @@ public class CaptureActivity extends Activity implements Callback {
 		txtResult = (TextView) findViewById(R.id.txtResult);
 		hasSurface = false;
 		inactivityTimer = new InactivityTimer(this);
+		
+		bt_back = (Button) findViewById(R.id.buttonScanQuit);
+		bt_back.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				 finish();
+			}
+		});
 	}
 
 	@SuppressWarnings("deprecation")

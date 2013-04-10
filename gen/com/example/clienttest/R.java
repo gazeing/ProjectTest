@@ -89,7 +89,7 @@ public final class R {
         public static final int btn_title_right=0x7f070040;
         public static final int button1=0x7f07000f;
         public static final int button2=0x7f070010;
-        public static final int buttonScan=0x7f07002f;
+        public static final int buttonScanQuit=0x7f07002f;
         public static final int checkBox1=0x7f07002a;
         public static final int decode=0x7f070001;
         public static final int decode_failed=0x7f070002;
