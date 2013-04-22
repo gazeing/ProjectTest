@@ -12,6 +12,13 @@ import com.example.clienttest.http.HttpOperation;
 import com.example.clienttest.http.SendDataToServer;
 import com.example.clienttest.location.CollectLocation;
 import com.example.clienttest.phone_info.CollectPhoneInformation;
+import com.example.clienttest.R;
+import com.example.clienttest.scan.Contents;
+import com.example.clienttest.scan.Intents;
+import com.example.clienttest.scan.QRCodeEncoder;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+
 
 
 import android.location.Location;
@@ -24,8 +31,10 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -108,11 +117,11 @@ public class MainActivity extends Activity {
 //				if ((lo==null)||(lo.length()==0))
 //					lo =  "Geocoder Service is not available.";
 //				tv.setText(lo);
-				int nRet = 0;
-				
-				startActivityForResult(new Intent("com.example.clienttest.scan.CaptureActivity"),nRet);
+//				int nRet = 0;
+//				
+//				startActivityForResult(new Intent("com.example.clienttest.location.TestMapView"),nRet);
 		      
-				
+			TestGenerateQrcode();	
 				
 			}});
 		btHttp = (Button) findViewById(R.id.button2);
@@ -130,6 +139,58 @@ public class MainActivity extends Activity {
 	
 			}
 		});
+	}
+	@SuppressWarnings("deprecation")
+	protected void TestGenerateQrcode() {
+		// TODO Auto-generated method stub
+		QRCodeEncoder qrCodeEncoder;
+		String USE_VCARD_KEY = "USE_VCARD";
+		String content = et.getText().toString();
+		if (content.length()==0)
+			content="test";
+		
+	    WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
+	    Display display = manager.getDefaultDisplay();
+	    int width = display.getWidth();
+	    int height = display.getHeight();
+	    int smallerDimension = width < height ? width : height;
+	    smallerDimension = smallerDimension * 5 / 8;
+	    
+	    Intent intent = getIntent();
+	    if (intent == null) {
+	      return;
+	    }
+	    intent.setAction(Intents.Encode.ACTION);
+	    intent.putExtra(Intents.Encode.DATA, content);
+	    intent.putExtra(Intents.Encode.TYPE, Contents.Type.TEXT);
+	    intent.putExtra(Intents.Encode.FORMAT, BarcodeFormat.QR_CODE);
+
+	    try {
+	      boolean useVCard = intent.getBooleanExtra(USE_VCARD_KEY, false);
+	      qrCodeEncoder = new QRCodeEncoder(this, intent, smallerDimension, useVCard);
+	      Bitmap bitmap = qrCodeEncoder.encodeAsBitmap();
+	      if (bitmap == null) {
+	        Log.w("test", "Could not encode barcode");
+	        //showErrorMessage(R.string.msg_encode_contents_failed);
+	        qrCodeEncoder = null;
+	        return;
+	      }
+	      ImageView view = (ImageView) findViewById(R.id.imageView2);
+	      view.setImageBitmap(bitmap);
+
+//	      TextView contents = (TextView) findViewById(R.id.contents_text_view);
+//	      if (intent.getBooleanExtra(Intents.Encode.SHOW_CONTENTS, true)) {
+//	        contents.setText(qrCodeEncoder.getDisplayContents());
+//	        setTitle(qrCodeEncoder.getTitle());
+//	      } else {
+//	        contents.setText("");
+//	        setTitle("");
+//	      }
+	    } catch (WriterException e) {
+	      Log.w("test", "Could not encode barcode", e);
+	      //showErrorMessage(R.string.msg_encode_contents_failed);
+	      qrCodeEncoder = null;
+	    }
 	}
 	public String testEncryption(){
 		String mac = new CollectPhoneInformation(getApplication()).getMacAddress();

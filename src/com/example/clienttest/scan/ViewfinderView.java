@@ -39,9 +39,12 @@ import java.util.HashSet;
  *
  * @author dswitkin@google.com (Daniel Switkin)
  */
+
+@SuppressWarnings("unused")
 public final class ViewfinderView extends View {
 
-  private static final int[] SCANNER_ALPHA = {0, 64, 128, 192, 255, 192, 128, 64};
+
+private static final int[] SCANNER_ALPHA = {0, 64, 128, 192, 255, 192, 128, 64};
   private static final long ANIMATION_DELAY = 100L;
   private static final int OPAQUE = 0xFF;
 
